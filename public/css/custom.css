@@ -1,0 +1,169 @@
+.card-box {
+    background: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-box:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.12);
+}
+
+.card-box img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #3b82f6;
+    box-shadow: 0 0 0 6px #e0f2fe;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.card-box:hover img {
+    transform: scale(1.05);
+}
+
+.card-box h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 0.25rem;
+}
+
+.card-box p {
+    font-size: 0.95rem;
+    color: #6b7280;
+}
+
+.card-box .social-icons {
+    margin-top: 1rem;
+    font-size: 1.25rem;
+}
+
+.card-box .social-icons a {
+    margin: 0 0.5rem;
+    color: #9ca3af;
+    transition: color 0.3s;
+}
+
+.card-box .social-icons a:hover {
+    color: #3b82f6;
+}
+
+.card-box .btn-profile {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.5rem 1.25rem;
+    background-color: #2563eb;
+    color: white;
+    font-size: 0.9rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.card-box .btn-profile:hover {
+    background-color: #1e40af;
+}
+
+/*Animasi Home*/
+html {
+    scroll-behavior: smooth;
+}
+
+/* Efek untuk konten hero */
+.hero-content {
+    animation: fadeIn 2s ease-in-out forwards;
+    opacity: 0;
+}
+
+/* Judul utama */
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: bold;
+    opacity: 0;
+    transform: translateY(-30px);
+    animation: slideInDown 1s ease-out forwards;
+}
+
+/* Subjudul */
+.hero-subtitle {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1.5s ease-out forwards;
+}
+
+/* Animasi gerakan turun */
+@keyframes slideInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animasi gerakan naik */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Efek muncul semua konten */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Efek typing di "Nauli Dental Care" */
+.typing {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid #fff;
+    animation: typing 3s steps(30, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink-caret {
+
+    from,
+    to {
+        border-color: transparent;
+    }
+
+    50% {
+        border-color: white;
+    }
+}

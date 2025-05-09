@@ -1,0 +1,190 @@
+/* public/css/welcome.css */
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    background-color: #fdfdfd;
+}
+
+.hero-section {
+    background: linear-gradient(to right, #0066cc, #00ccff);
+    color: white;
+    padding: 120px 20px;
+    text-align: center;
+    position: relative;
+}
+
+.hero-section h1 {
+    font-size: 3em;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.hero-section p {
+    font-size: 1.2em;
+    max-width: 700px;
+    margin: 0 auto 30px;
+}
+
+.hero-section a {
+    background: white;
+    color: #007BFF;
+    padding: 14px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.hero-section a:hover {
+    background: #e6f0ff;
+}
+
+/* Informasi */
+.informasi-section {
+    padding: 80px 20px;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.informasi-section h2 {
+    font-size: 2.5em;
+    color: #0056b3;
+    margin-bottom: 20px;
+}
+
+.informasi-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.card-info {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    overflow: hidden;
+    text-align: left;
+}
+
+.card-info img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.card-info .content {
+    padding: 20px;
+}
+
+.card-info h3 {
+    color: #0077cc;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+
+.card-info p {
+    color: #555;
+    font-size: 0.95em;
+}
+
+/* Galeri */
+.galeri-section {
+    padding: 80px 20px;
+    background: #f0f8ff;
+    text-align: center;
+}
+
+.swiper-container {
+    max-width: 1000px;
+    margin: auto;
+}
+
+/* Fitur */
+.fitur-section {
+    padding: 80px 20px;
+    background: white;
+    text-align: center;
+}
+
+.fitur-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.fitur-box {
+    background: #e6f2ff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    max-width: 300px;
+}
+
+/* CTA */
+.cta-section {
+    background: #0077cc;
+    color: white;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.cta-section a {
+    background: white;
+    color: #0077cc;
+    padding: 14px 30px;
+    border-radius: 30px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.cta-section a:hover {
+    background: #e6f0ff;
+}
+/* TESTIMONI STYLING */
+.rating {
+    display: inline-flex;
+    gap: 8px;
+    direction: rtl;
+    unicode-bidi: bidi-override;
+}
+
+.rating input[type="radio"] {
+    display: none;
+}
+
+.rating label {
+    font-size: 2rem;
+    /* Ukuran bintang lebih kecil */
+    color: #ddd;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.rating label:hover,
+.rating input[type="radio"]:checked~label,
+.rating label:hover~label {
+    color: gold;
+    transform: scale(1.1);
+    /* Perkecil sedikit efek scale */
+}
+
+.rating input[type="radio"]:checked~label {
+    color: gold;
+    transform: scale(1.1);
+    /* Perkecil sedikit efek scale */
+}
+
+.rating label:hover,
+.rating input[type="radio"]:checked~label:hover {
+    color: gold;
+}
+
+
+

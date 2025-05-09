@@ -1,0 +1,97 @@
+/* --- Bagian Visi Misi Section --- */
+.visi-misi-section {
+    background-color: #f9f9f9;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.visi-misi-section .judul {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1e3a8a;
+    margin-bottom: 40px;
+}
+
+/* --- Wrapper Visi & Misi Card --- */
+.visi-misi-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    justify-items: center;
+    align-items: stretch;
+}
+
+/* --- Kartu Visi dan Misi --- */
+.card-visi,
+.card-misi {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left;
+    width: 100%;
+    max-width: 500px;
+}
+
+.card-visi:hover,
+.card-misi:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* --- Ikon di atas judul --- */
+.icon-box {
+    font-size: 40px;
+    color: #1e3a8a;
+    margin-bottom: 20px;
+}
+
+/* --- Judul pada Kartu --- */
+.card-visi h3,
+.card-misi h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #1e40af;
+}
+
+/* --- Isi Teks Visi --- */
+.card-visi p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #444;
+}
+
+/* --- Daftar Isi Misi --- */
+.card-misi ul {
+    padding-left: 20px;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #444;
+}
+
+.card-misi ul li {
+    list-style: disc;
+    margin-bottom: 10px;
+}
+
+/* --- Responsif di layar kecil --- */
+@media (max-width: 768px) {
+    .visi-misi-wrapper {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .card-visi,
+    .card-misi {
+        max-width: 100%;
+    }
+}
+
+.card:active {
+    transform: scale(0.97);
+    transition: transform 0.2s ease;
+}
+
