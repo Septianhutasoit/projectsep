@@ -28,14 +28,16 @@ class LayananController extends Controller
             'gambar' => 'image|nullable|max:1999',
         ]);
 
+        $fileNameToStore = 'noimage.png'; // Default gambar
+
         if ($request->hasFile('gambar')) {
             $filenameWithExt = $request->file('gambar')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('gambar')->getClientOriginalExtension();
             $fileNameToStore = $filename . '_' . time() . '.' . $extension;
-            $path = $request->file('gambar')->storeAs('public/gambar_layanan', $fileNameToStore);
-        } else {
-            $fileNameToStore = 'noimage.png';
+
+            // Simpan ke folder public/gambar_layanan menggunakan disk 'public'
+            $request->file('gambar')->storeAs('gambar_layanan', $fileNameToStore, 'public');
         }
 
         Layanan::create([
@@ -62,19 +64,21 @@ class LayananController extends Controller
         ]);
 
         $layanan = Layanan::findOrFail($id);
+        $fileNameToStore = $layanan->gambar; // Gunakan gambar lama sebagai default
 
         if ($request->hasFile('gambar')) {
-            if ($layanan->gambar !== 'noimage.png' && Storage::exists('public/gambar_layanan/' . $layanan->gambar)) {
-                Storage::delete('public/gambar_layanan/' . $layanan->gambar);
+            // Hapus gambar lama jika bukan default
+            if ($layanan->gambar !== 'noimage.png' && Storage::disk('public')->exists('gambar_layanan/' . $layanan->gambar)) {
+                Storage::disk('public')->delete('gambar_layanan/' . $layanan->gambar);
             }
 
             $filenameWithExt = $request->file('gambar')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('gambar')->getClientOriginalExtension();
             $fileNameToStore = $filename . '_' . time() . '.' . $extension;
-            $request->file('gambar')->storeAs('public/gambar_layanan', $fileNameToStore);
-        } else {
-            $fileNameToStore = $layanan->gambar;
+
+            // Simpan ke folder public/gambar_layanan menggunakan disk 'public'
+            $request->file('gambar')->storeAs('gambar_layanan', $fileNameToStore, 'public');
         }
 
         $layanan->update([
@@ -89,8 +93,10 @@ class LayananController extends Controller
     public function destroy($id)
     {
         $layanan = Layanan::findOrFail($id);
-        if ($layanan->gambar !== 'noimage.png' && Storage::exists('public/gambar_layanan/' . $layanan->gambar)) {
-            Storage::delete('public/gambar_layanan/' . $layanan->gambar);
+
+        // Hapus gambar jika bukan default
+        if ($layanan->gambar !== 'noimage.png' && Storage::disk('public')->exists('gambar_layanan/' . $layanan->gambar)) {
+            Storage::disk('public')->delete('gambar_layanan/' . $layanan->gambar);
         }
 
         $layanan->delete();
