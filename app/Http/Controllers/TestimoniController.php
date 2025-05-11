@@ -15,6 +15,7 @@ class TestimoniController extends Controller
         return view('welcome', compact('testimonis'));
     }
 
+
     public function store(Request $request)
     {
         $request->validate([

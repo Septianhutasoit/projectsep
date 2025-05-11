@@ -56,8 +56,10 @@ class DashboardController extends Controller
             while ($current <= $end) {
                 $weekStart = $current->copy()->startOfWeek();
                 $weekEnd = $current->copy()->endOfWeek();
-                $labels[] = 'Minggu ' . $weekStart->weekOfMonth;
-                $data[] = Appointment::whereBetween('appointment_datetime', [$weekStart, $weekEnd])->count();
+                if ($weekStart <= $end) {
+                    $labels[] = 'Minggu ' . $weekStart->weekOfMonth;
+                    $data[] = Appointment::whereBetween('appointment_datetime', [$weekStart, $weekEnd])->count();
+                }
                 $current->addWeek();
             }
         } elseif ($filter === 'minggu') {
@@ -77,6 +79,34 @@ class DashboardController extends Controller
                 $current->addDay();
             }
         }
+
+        // Debug: Ensure $labels and $data are arrays
+        if (!is_array($labels) || !is_array($data)) {
+            \Log::error('Invalid labels or data in DashboardController', [
+                'labels' => $labels,
+                'data' => $data,
+            ]);
+            $labels = ['No Data'];
+            $data = [0];
+        }
+
+        // Ensure labels and data have the same length
+        if (count($labels) !== count($data)) {
+            \Log::warning('Labels and data length mismatch in DashboardController', [
+                'labels_count' => count($labels),
+                'data_count' => count($data),
+            ]);
+            $minLength = min(count($labels), count($data));
+            $labels = array_slice($labels, 0, $minLength);
+            $data = array_slice($data, 0, $minLength);
+        }
+
+        // Debug: Log the final arrays
+        \Log::info('DashboardController data', [
+            'labels' => $labels,
+            'data' => $data,
+            'filter' => $filter,
+        ]);
 
         return view('admin.dashboard', [
             'totalAppointments' => Appointment::count(),

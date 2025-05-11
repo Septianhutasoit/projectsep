@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 
 class LayananController extends Controller
-{
+{  
     public function index()
     {
         $layanan = Layanan::all();
