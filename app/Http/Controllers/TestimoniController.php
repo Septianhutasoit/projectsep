@@ -82,3 +82,4 @@ class TestimoniController extends Controller
         return redirect()->route('home')->with('success', 'Testimoni berhasil dihapus.');
     }
 }
+

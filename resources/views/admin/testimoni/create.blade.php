@@ -7,3 +7,4 @@
     <input type="file" name="foto">
     <button type="submit">Simpan</button>
 </form>
+
