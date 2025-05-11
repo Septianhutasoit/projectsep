@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 
 class LayananController extends Controller
-{  
+{
     public function index()
     {
         $layanan = Layanan::all();
@@ -103,3 +103,4 @@ class LayananController extends Controller
         return redirect()->route('admin.layanan.index')->with('success', 'Layanan berhasil dihapus.');
     }
 }
+

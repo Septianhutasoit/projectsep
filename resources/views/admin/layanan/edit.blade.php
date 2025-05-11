@@ -1,69 +1,70 @@
+@extends('layouts.admin')
 @extends('admin.layouts.app')
 
 @section('title', 'Edit Layanan')
 
 @section('content')
-<<<<<<< HEAD
-<div class="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-md mt-10">
-    <h1 class="text-2xl font-bold text-center mb-6 text-gray-800">Edit Layanan</h1>
+<div class="container mx-auto p-6">
+    <h1 class="text-3xl font-bold text-center mb-8 text-blue-700">Edit Layanan</h1>
 
-    @if ($errors->any())
-    <div class="bg-red-50 border-l-4 border-red-500 text-red-700 p-4 mb-6 rounded-lg">
-        <p class="font-semibold">Terjadi Kesalahan!</p>
-        <ul class="list-disc ml-5 mt-2 text-sm">
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
-
-    <form action="{{ route('admin.layanan.update', $layanan->id) }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+    <form action="{{ route('admin.layanan.update', $layanan->id) }}" method="POST" enctype="multipart/form-data"
+        class="bg-white shadow-md rounded-xl p-6">
         @csrf
         @method('PUT')
 
-        <div>
-            <label for="nama" class="block text-gray-700 font-medium mb-1">Nama Layanan</label>
-            <input type="text" id="nama" name="nama" value="{{ old('nama', $layanan->nama) }}"
-                class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-orange-500 focus:border-orange-500 py-2 px-3 bg-gray-50"
-                required>
-        </div>
+        <table class="w-full table-auto border-collapse">
+            <tbody>
+                <tr>
+                    <td class="font-semibold py-2 pr-4 text-left w-1/4">Nama</td>
+                    <td class="py-2">
+                        <input type="text" name="nama" value="{{ $layanan->nama }}"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="font-semibold py-2 pr-4 text-left align-top">Deskripsi</td>
+                    <td class="py-2">
+                        <textarea name="deskripsi" rows="5"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{{ $layanan->deskripsi }}</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="font-semibold py-2 pr-4 text-left align-top">Gambar Saat Ini</td>
+                    <td class="py-2">
+                        <img src="{{ asset('storage/gambar_layanan/' . $layanan->gambar) }}"
+                            class="w-32 h-32 object-cover rounded border">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="font-semibold py-2 pr-4 text-left align-top">Ganti Gambar</td>
+                    <td class="py-2">
+                        <input type="file" name="gambar"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <small class="text-gray-500">Opsional, hanya isi jika ingin mengganti gambar</small>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-        <div>
-            <label for="deskripsi" class="block text-gray-700 font-medium mb-1">Deskripsi</label>
-            <textarea id="deskripsi" name="deskripsi" rows="4"
-                class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-orange-500 focus:border-orange-500 py-2 px-3 bg-gray-50 resize-y"
-                required>{{ old('deskripsi', $layanan->deskripsi) }}</textarea>
-        </div>
-
-        <div>
-            <label for="gambar" class="block text-gray-700 font-medium mb-1">Ganti Gambar (Opsional)</label>
-            <input type="file" id="gambar" name="gambar"
-                class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-orange-500 focus:border-orange-500 py-2 px-3 bg-white">
-            <p class="text-gray-500 text-sm mt-1">Format: JPG, PNG. Maksimal: 2MB</p>
-
-            @if ($layanan->gambar)
-            <div class="mt-3">
-                <p class="text-gray-500 text-sm mb-1">Gambar saat ini:</p>
-                <img src="{{ asset('storage/layanan/' . $layanan->gambar) }}" alt="Gambar Layanan" class="h-32 rounded-lg border border-gray-200 shadow-sm">
-            </div>
-            @endif
-        </div>
-
-        <div class="flex justify-center gap-4 mt-8">
-            <a href="{{ route('admin.layanan.index') }}"
-                class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-6 rounded-lg transition transform duration-200 hover:scale-105 hover:shadow">
-                Kembali
-            </a>
+        <div class="flex justify-end mt-6">
             <button type="submit"
-                class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-6 rounded-lg transition transform duration-200 hover:scale-105 hover:shadow">
+                class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2">
                 Simpan Perubahan
             </button>
+            <a href="{{ route('admin.layanan.index') }}"
+                class="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                Batal
+            </a>
         </div>
     </form>
-</div>
-@endsection
-=======
+
+    <div class="mt-8">
+        <h2 class="text-2xl font-bold text-blue-700 mb-4">Aksi Lainnya</h2>
+        <div class="flex justify-end">
+            <form action="{{ route('admin.layanan.destroy', $layanan->id) }}" method="POST"
+                onsubmit="return confirm('Apakah Anda yakin ingin menghapus layanan ini?')">
+                @csrf
+                @method('DELETE')
     <div class="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-md mt-10 form-container">
         <h1 class="text-2xl font-bold text-center mb-6 text-gray-800">Edit Layanan</h1>
 
@@ -125,15 +126,20 @@
                     Kembali
                 </a>
                 <button type="submit"
+                    class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    Hapus
                         class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-6 rounded-lg transition transform duration-200 hover:scale-105 hover:shadow btn-primary">
                     Simpan Perubahan
                 </button>
+            </form>
+        </div>
             </div>
         </form>
     </div>
+</div>
+@endsection
 @endsection
 
->>>>>>> 8a39852564884462305be4417e3059322367f46e
 @push('styles')
     <style>
         .form-container {
@@ -203,10 +209,7 @@
             cursor: pointer;
             transition: background-color 0.2s;
             text-decoration: none;
-<<<<<<< HEAD
-=======
             display: inline-block;
->>>>>>> 8a39852564884462305be4417e3059322367f46e
         }
 
         .btn-secondary:hover {
@@ -217,10 +220,6 @@
             font-size: 0.875rem;
             color: #6c757d;
         }
-<<<<<<< HEAD
-    </style>
-@endpush
-=======
 
         .img-thumbnail {
             border-radius: 4px;
@@ -232,4 +231,3 @@
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 @endpush
->>>>>>> 8a39852564884462305be4417e3059322367f46e
